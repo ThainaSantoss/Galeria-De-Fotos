@@ -59,23 +59,6 @@ Bem-vindo ao projeto **Galeria de Fotos**! Este é um site desenvolvido com **Ne
 
 ----------
 
-## 📂 Estrutura do Projeto
-
-├── components
-│   ├── Modal.tsx  
-│   ├── PhotoItem.tsx    
-├── data
-│   ├── photoList.ts   
-├── pages
-│   ├── index.tsx     
-├── public
-│   ├── assets       
-├── styles
-│   ├── globals.css      
-├── tailwind.config.js     
-├── tsconfig.json        
-
-----------
 
 ## 📸 Configuração das Imagens
 
