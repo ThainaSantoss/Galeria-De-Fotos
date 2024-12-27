@@ -1,101 +1,99 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+import { Modal } from "@/components/Modal";
+import { PhotoItem } from "@/components/PhotoItem";
+import { photoList } from "@/data/photoList";
+import { useState } from "react";
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+
+
+const Page = () => {
+    const [currentIndex, setCurrentIndex] = useState(0); // indice de imagem atual 
+    const [showModal, setShowModal] = useState(false);
+
+    // funções para navegação do slider principal
+    const prevImage = () => {
+        setCurrentIndex((prev) => (prev > 0 ? prev - 1 : photoList.length - 1));
+    }
+
+    const nextImage = () => {
+        setCurrentIndex((prev) => (prev < photoList.length - 1 ? prev + 1 : 0));
+    }
+
+    const openModal = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    return (
+        <div className="mx-2">
+            <h1 className="text-center text-4xl font-bold my-10 font-sans text-white">
+            Bem-vindo à sua Galeria de Fotos!
+            </h1>
+          
+
+            {/* SLider */}
+            <div className="relative max-w-4xl mx-auto">
+                <img
+                    src={`/assets/${photoList[currentIndex].url}`}
+                    alt="Imagem Principal"
+                    className="w-full h-96 object-cover rounded-lg "
+  
+                />
+
+                {/* botões */}
+                <button
+                    onClick={prevImage}
+                    className="absolute top-1/2 left-5 transform -translate-y-1/2 bg-gray-500 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition"
+
+                >
+                    ⬅
+                </button>
+                <button
+                    onClick={nextImage}
+                    className="absolute top-1/2 right-5 transform -translate-y-1/2 bg-gray-500 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition"
+                >
+                    ⮕
+                </button>
+
+                {/* Abertura Modal */}
+                <button
+                    onClick={openModal}
+                    className="absolute bottom-5 right-5 bg-gray-800 text-white p-2 rounded-full cursor-pointer"
+                >
+                    🔍
+                </button>
+            </div>
+
+            {/*Miniaturas*/}
+            <div className="flex justify-center gap-4 mt-4">
+                {photoList.map((photo, index) => (
+                    <img
+                        key={photo.id}
+                        src={`/assets/${photo.url}`}
+                        alt={`Miniatura${index}`}
+                        className={`w-20 h-20 object-cover cursor-pointer rounded-lg ${index === currentIndex
+                            ? "border-4 border-blue-500"
+                            : "opacity-80 hover:opacity-100"
+                            }`}
+                        onClick={() => setCurrentIndex(index)} // altera a imagem
+                    />
+                ))}
+            </div>
+            {/* Modal */}
+            {showModal && (
+                <Modal
+                    image={photoList[currentIndex].url}
+                    closeModal={closeModal}
+                />
+            )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
-}
+
+    );
+
+};
+
+export default Page; 
