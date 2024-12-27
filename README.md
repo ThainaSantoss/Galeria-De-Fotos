@@ -124,7 +124,7 @@ Contribuições são bem-vindas! Para contribuir:
 
 ## 🖼️ Prévia do Projeto
 
--Modo Escuro
+- Modo Escuro
 
 <img src="/public/assets/Captura do site.png" alt="Captura do layout">
 
