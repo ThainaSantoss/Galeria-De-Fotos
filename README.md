@@ -62,19 +62,18 @@ Bem-vindo ao projeto **Galeria de Fotos**! Este é um site desenvolvido com **Ne
 ## 📂 Estrutura do Projeto
 
 ├── components
-
-│   ├── Modal.tsx  # Componente de exibição de imagem em tela cheia
-│   ├── PhotoItem.tsx    # Componente para exibir uma imagem na galeria
+│   ├── Modal.tsx  
+│   ├── PhotoItem.tsx    
 ├── data
-│   ├── photoList.ts   # Lista de imagens para a galeria
+│   ├── photoList.ts   
 ├── pages
-│   ├── index.tsx     # Página principal
+│   ├── index.tsx     
 ├── public
-│   ├── assets       # Imagens usadas na galeria
+│   ├── assets       
 ├── styles
-│   ├── globals.css      # Estilização global com Tailwind e variáveis CSS
-├── tailwind.config.js     # Configurações do Tailwind CSS
-├── tsconfig.json          # Configuração do TypeScript
+│   ├── globals.css      
+├── tailwind.config.js     
+├── tsconfig.json        
 
 ----------
 
@@ -142,7 +141,11 @@ Contribuições são bem-vindas! Para contribuir:
 
 ## 🖼️ Prévia do Projeto
 
+-Modo Escuro
+
 <img src="/public/assets/Captura do site.png" alt="Captura do layout">
+
+
 ----------
 
 ## 💬 Contato
