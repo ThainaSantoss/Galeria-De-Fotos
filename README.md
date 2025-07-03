@@ -34,8 +34,7 @@ Bem-vindo ao projeto **Galeria de Fotos**! Este é um site desenvolvido com **Ne
 
 1. Clone este repositório:
 
-   `git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio` 
+   `git clone https://github.com/ThainaSantoss/Galeria-De-Fotos.git` 
 
 2.  Instale as dependências:
   
